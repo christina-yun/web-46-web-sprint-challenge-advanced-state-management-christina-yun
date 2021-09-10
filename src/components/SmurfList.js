@@ -6,8 +6,6 @@ import { connect } from 'react-redux';
     const isLoading = props.IsLoading;
     const smurfs = props.smurfs;
 
-    console.log('SmurfList', props)
-
     if (isLoading) {
         return <h1>Loading...</h1>;
     }

@@ -24,20 +24,20 @@ const reducer = (state = initialState, action)=>{
         case(FETCH_START):
             return({
                 ...state,
-                isFetching: true,
+                isLoading: true,
                 errorMessage: ''
             });
         case(FETCH_SUCCESS):
             return({
                 ...state,
                 smurfs: action.payload,
-                isFetching: false,
+                isLoading: false,
                 errorMessage: ''
             });
         case(FETCH_FAIL):
             return ({
                 ...state,
-                isFetching:false,
+                isLoading:false,
                 errorMessage: action.payload
             })
         case(ADD_SMURF):
