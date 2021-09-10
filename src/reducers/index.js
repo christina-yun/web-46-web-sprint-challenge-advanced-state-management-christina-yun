@@ -1,4 +1,4 @@
-import { FETCH_START, FETCH_SUCCESS, FETCH_FAIL, ADD_SMURF } from "../actions";
+import { FETCH_START, FETCH_SUCCESS, FETCH_FAIL, ADD_SMURF, SET_ERROR } from "../actions";
 
 export const initialState = {
     smurfs: [{
@@ -7,9 +7,16 @@ export const initialState = {
         nickname: "Kitter",
         position: "cat",
         description: "CATSSSS"
+    },
+    {
+        id: "12390",
+        name: "Sebastian",
+        nickname: "bb",
+        position: "kitten",
+        description: "bb kitter"
     }],
     isLoading: false,
-    error: '' 
+    errorMessage: '' 
 }
 
 const reducer = (state = initialState, action)=>{
@@ -18,20 +25,20 @@ const reducer = (state = initialState, action)=>{
             return({
                 ...state,
                 isFetching: true,
-                error: ''
+                errorMessage: ''
             });
         case(FETCH_SUCCESS):
             return({
                 ...state,
                 smurfs: action.payload,
                 isFetching: false,
-                error: ''
+                errorMessage: ''
             });
         case(FETCH_FAIL):
             return ({
                 ...state,
                 isFetching:false,
-                error: action.payload
+                errorMessage: action.payload
             })
         case(ADD_SMURF):
             return({
@@ -44,6 +51,11 @@ const reducer = (state = initialState, action)=>{
                     description: action.payload.description
                 }]
 
+            })
+        case(SET_ERROR):
+            return({
+                ...state,
+                errorMessage: action.payload
             })
         default:
             return state;
